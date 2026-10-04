@@ -2,11 +2,13 @@
 
 Level: Advanced
 
-Skills: Retrieval, hashed embeddings, a local vector index, FastAPI
+Skills: retrieval, chunking, hashed embeddings, a local vector index, citations, FastAPI
 
-Questions are embedded with a hashed bag of tokens and compared to the markdown files in `corpus/`. The answer is the closest passage. If nothing is close, the API says so and does not invent a paragraph.
+Markdown in `corpus/` is split into chunks at each heading and blank line. Each chunk keeps its file, heading, and starting line. A question is embedded with a hashed bag of tokens and ranked against the chunks. The answer is the best chunk, with a citation such as `corpus/rollback.md:7 (Who approves)`.
 
-There is no hosted model and no API key. The index is the list of vectors built at startup from those files.
+If the best chunk does not share at least two meaningful words with the question, the API says so and does not invent a paragraph. "What is the cafeteria menu?" is refused.
+
+There is no hosted model and no API key. The index lives in memory and is rebuilt from `corpus/` at startup.
 
 ```bash
 pip install -r requirements.txt
@@ -14,3 +16,20 @@ pytest -q
 PYTHONPATH=src uvicorn docsassist.main:app --reload
 ```
 
+| Method and path | Does |
+| --- | --- |
+| `POST /ask` | `question` and optional `top_k` (1 to 10). Returns the answer, citations, and ranked passages |
+| `GET /documents` | Indexed files and their chunk counts |
+| `POST /documents` | Add `name` (for example `oncall.md`) and `text`. Stored under `uploaded/` |
+| `GET /healthz` | Document and chunk counts |
+
+```bash
+curl -s -X POST localhost:8000/ask -H 'content-type: application/json' \
+  -d '{"question":"Who approves a staging pull request?"}'
+```
+
+## Limits
+
+- An uploaded name must be a plain lowercase `.md` file name, so it cannot point outside the index.
+- A document can be up to 20,000 characters, and the index holds up to 50 documents.
+- Uploaded documents live in memory and disappear on restart.
