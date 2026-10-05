@@ -1,3 +1,4 @@
+from docsassist.ops import router as ops_router
 import re
 from pathlib import Path
 
@@ -12,6 +13,7 @@ MAX_DOCUMENT = 20_000
 MAX_DOCUMENTS = 50
 
 app = FastAPI(title="Docs assistant")
+app.include_router(ops_router, prefix="/v1")
 INDEX = Index()
 
 

@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ai-docs-assistant
+  labels:
+    app: ai-docs-assistant
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ai-docs-assistant
+  template:
+    metadata:
+      labels:
+        app: ai-docs-assistant
+    spec:
+      containers:
+        - name: api
+          image: ai-docs-assistant:local
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /v1/readyz
+              port: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ai-docs-assistant
+spec:
+  selector:
+    app: ai-docs-assistant
+  ports:
+    - port: 80
+      targetPort: 8080
