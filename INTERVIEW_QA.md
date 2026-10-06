@@ -98,10 +98,10 @@ This is a concrete regression example from the repository. Its assertions establ
 - `POST /ask` → `ask` in [`src/docsassist/main.py`](src/docsassist/main.py#L46).
 - `GET /documents` → `documents` in [`src/docsassist/main.py`](src/docsassist/main.py#L51).
 - `POST /documents` → `add_document` in [`src/docsassist/main.py`](src/docsassist/main.py#L56).
-- `GET /readyz` → `readyz` in [`src/docsassist/ops.py`](src/docsassist/ops.py#L44).
-- `POST /workspaces` → `create_workspace` in [`src/docsassist/ops.py`](src/docsassist/ops.py#L49).
-- `GET /workspaces` → `list_workspaces` in [`src/docsassist/ops.py`](src/docsassist/ops.py#L66).
-- `POST /workspaces/{workspace_id}/jobs` → `create_job` in [`src/docsassist/ops.py`](src/docsassist/ops.py#L73).
+- `GET /readyz` → `readyz` in [`src/docsassist/ops.py`](src/docsassist/ops.py#L74).
+- `POST /workspaces` → `create_workspace` in [`src/docsassist/ops.py`](src/docsassist/ops.py#L80).
+- `GET /workspaces` → `list_workspaces` in [`src/docsassist/ops.py`](src/docsassist/ops.py#L98).
+- `POST /workspaces/{workspace_id}/jobs` → `create_job` in [`src/docsassist/ops.py`](src/docsassist/ops.py#L106).
 
 These are literal decorators. Application/router prefixes, authentication, and middleware must be checked in the corresponding setup code.
 

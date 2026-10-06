@@ -53,14 +53,14 @@ These checked-in guides provide the project’s detailed design, operational con
 | `POST /ask` | `ask` | [`src/docsassist/main.py`](src/docsassist/main.py#L46) |
 | `GET /documents` | `documents` | [`src/docsassist/main.py`](src/docsassist/main.py#L51) |
 | `POST /documents` | `add_document` | [`src/docsassist/main.py`](src/docsassist/main.py#L56) |
-| `GET /readyz` | `readyz` | [`src/docsassist/ops.py`](src/docsassist/ops.py#L44) |
-| `POST /workspaces` | `create_workspace` | [`src/docsassist/ops.py`](src/docsassist/ops.py#L49) |
-| `GET /workspaces` | `list_workspaces` | [`src/docsassist/ops.py`](src/docsassist/ops.py#L66) |
-| `POST /workspaces/{workspace_id}/jobs` | `create_job` | [`src/docsassist/ops.py`](src/docsassist/ops.py#L73) |
-| `GET /jobs/{job_id}` | `get_job` | [`src/docsassist/ops.py`](src/docsassist/ops.py#L96) |
-| `POST /jobs/{job_id}/approve` | `approve_job` | [`src/docsassist/ops.py`](src/docsassist/ops.py#L105) |
-| `GET /audit` | `audit` | [`src/docsassist/ops.py`](src/docsassist/ops.py#L122) |
-| `GET /metrics` | `metrics` | [`src/docsassist/ops.py`](src/docsassist/ops.py#L138) |
+| `GET /readyz` | `readyz` | [`src/docsassist/ops.py`](src/docsassist/ops.py#L74) |
+| `POST /workspaces` | `create_workspace` | [`src/docsassist/ops.py`](src/docsassist/ops.py#L80) |
+| `GET /workspaces` | `list_workspaces` | [`src/docsassist/ops.py`](src/docsassist/ops.py#L98) |
+| `POST /workspaces/{workspace_id}/jobs` | `create_job` | [`src/docsassist/ops.py`](src/docsassist/ops.py#L106) |
+| `GET /jobs/{job_id}` | `get_job` | [`src/docsassist/ops.py`](src/docsassist/ops.py#L130) |
+| `POST /jobs/{job_id}/approve` | `approve_job` | [`src/docsassist/ops.py`](src/docsassist/ops.py#L140) |
+| `GET /audit` | `audit` | [`src/docsassist/ops.py`](src/docsassist/ops.py#L160) |
+| `GET /metrics` | `metrics` | [`src/docsassist/ops.py`](src/docsassist/ops.py#L176) |
 
 The table lists literal route decorators found in the inspected Python modules. Router prefixes and middleware can add behavior; check the linked handler and application setup before calling an endpoint.
 
