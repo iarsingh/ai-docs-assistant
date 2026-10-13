@@ -1,5 +1,12 @@
 # AI documentation assistant
 
+## Overview
+
+A documentation assistant that answers from local markdown with file-and-line citations, or refuses. Files in `corpus/` are chunked at headings and blank lines, embedded with a hashed bag of tokens into an in-memory vector index, and the best chunk is returned with a citation such as `corpus/rollback.md:7`. If the best chunk shares fewer than two meaningful words with the question, it says so instead of inventing an answer. Documents can be added over the API, within name and size limits.
+
+- **Built with:** Python, FastAPI, uvicorn, pytest, Docker, GitHub Actions
+- **Scope:** Local lab with no hosted model or API key; uploads live in memory and disappear on restart, and production apply is refused.
+
 <!-- project-guide:start -->
 ## Project guide
 
